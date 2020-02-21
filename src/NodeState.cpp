@@ -49,6 +49,10 @@ connections(PortType portType, PortIndex portIndex) const
 {
   auto const &connections = getEntries(portType);
 
+  if (connections.size() == 0) {
+    return QtNodes::NodeState::ConnectionPtrSet();
+  }
+
   return connections[portIndex];
 }
 
