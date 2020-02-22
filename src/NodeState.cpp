@@ -140,3 +140,11 @@ resizing() const
 {
   return _resizing;
 }
+
+void
+NodeState::
+updatePortCount(int inPorts, int outPorts)
+{
+  _inConnections.resize(inPorts);
+  _outConnections.resize(outPorts);
+}
