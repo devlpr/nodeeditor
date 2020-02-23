@@ -278,7 +278,6 @@ void NodeGraphicsObject::
 updateSize()
 {
   auto & geom  = _node.nodeGeometry();
-  auto & state = _node.nodeState();
 
   if (auto w = _node.nodeDataModel()->embeddedWidget())
   {
