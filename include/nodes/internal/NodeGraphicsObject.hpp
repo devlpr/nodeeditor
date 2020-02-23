@@ -54,6 +54,9 @@ public:
   void
   lock(bool locked);
 
+  void
+  updateSize();
+
 protected:
   void
   paint(QPainter*                       painter,

@@ -274,6 +274,35 @@ mousePressEvent(QGraphicsSceneMouseEvent * event)
 }
 
 
+void NodeGraphicsObject::
+updateSize()
+{
+  auto & geom  = _node.nodeGeometry();
+  auto & state = _node.nodeState();
+
+  if (auto w = _node.nodeDataModel()->embeddedWidget())
+  {
+    QSize oldSize = w->size();
+
+    oldSize += QSize(1, 1);
+
+    w->setFixedSize(oldSize);
+
+    _proxyWidget->setMinimumSize(oldSize);
+    _proxyWidget->setMaximumSize(oldSize);
+    _proxyWidget->setPos(geom.widgetPosition());
+
+    geom.recalculateSize();
+  }
+
+  QRectF r = scene()->sceneRect();
+
+  r = r.united(mapToScene(boundingRect()).boundingRect());
+
+  scene()->setSceneRect(r);
+}
+
+
 void
 NodeGraphicsObject::
 mouseMoveEvent(QGraphicsSceneMouseEvent * event)
